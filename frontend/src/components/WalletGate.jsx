@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useDisconnect, useSwitchChain } from 'wagmi';
-import { Wallet, LogOut, UserCheck, AlertCircle, KeyRound, LoaderCircle } from 'lucide-react';
+import { Wallet, LogOut, UserCheck, AlertCircle, KeyRound, LoaderCircle, Pencil } from 'lucide-react';
 import { useAuth } from '../lib/authContext';
 import { useAccessPayment } from '../lib/accessCheckoutContext';
 import { validTransactionHash } from '../lib/accessCheckoutApi';
@@ -25,8 +25,8 @@ export const WalletGate = ({ onProfileLoaded, testIdPrefix = 'wallet' }) => {
     setSigning(true);
     try {
       const acct = await loginWithWallet();
-      if (acct?.game_access && (!acct.nickname || acct.nickname.startsWith('Survivor_'))) {
-        setNewNick(acct.nickname || '');
+      if (acct?.new_account) {
+        setNewNick('');
         setShowNickModal(true);
       }
       if (onProfileLoaded && acct) onProfileLoaded(acct);
@@ -41,6 +41,7 @@ export const WalletGate = ({ onProfileLoaded, testIdPrefix = 'wallet' }) => {
   const handleSaveNickname = async (e) => {
     e.preventDefault();
     if (!newNick.trim()) return;
+    setErrorMsg('');
     try {
       const updated = await updateProfile(newNick.trim());
       setShowNickModal(false);
@@ -141,6 +142,15 @@ export const WalletGate = ({ onProfileLoaded, testIdPrefix = 'wallet' }) => {
               <button
                 type="button"
                 className="wallet-logout-btn"
+                onClick={() => { setErrorMsg(''); setNewNick(user.nickname && !user.nickname.startsWith('Survivor_') ? user.nickname : ''); setShowNickModal(true); }}
+                title="Change call sign"
+                data-testid={`${testIdPrefix}-edit-nick-btn`}
+              >
+                <Pencil size={13} />
+              </button>
+              <button
+                type="button"
+                className="wallet-logout-btn"
                 onClick={async () => { await logout(); disconnect(); }}
                 title="Disconnect & Sign Out"
                 data-testid={`${testIdPrefix}-logout-btn`}
@@ -167,8 +177,8 @@ export const WalletGate = ({ onProfileLoaded, testIdPrefix = 'wallet' }) => {
       {showNickModal && (
         <div className="wallet-nick-backdrop">
           <div className="wallet-nick-modal" role="dialog" aria-label="Register call sign" data-testid={`${testIdPrefix}-nickname-modal`}>
-            <h3><UserCheck size={18} /> REGISTER CALL SIGN</h3>
-            <p>Welcome, survivor! Set your permanent call sign for this Robinhood wallet.</p>
+            <h3><UserCheck size={18} /> {user && user.nickname && !user.nickname.startsWith('Survivor_') ? 'CHANGE CALL SIGN' : 'REGISTER CALL SIGN'}</h3>
+            <p>Welcome, survivor! Choose a call sign for this Robinhood wallet — you can change it anytime from your profile.</p>
             <form onSubmit={handleSaveNickname}>
               <input
                 type="text"
@@ -181,9 +191,10 @@ export const WalletGate = ({ onProfileLoaded, testIdPrefix = 'wallet' }) => {
                 autoFocus
                 required
               />
+              {errorMsg && <p className="wallet-error-msg" role="alert" data-testid={`${testIdPrefix}-nickname-error`}><AlertCircle size={12} /> {errorMsg}</p>}
               <div className="wallet-modal-actions">
-                <Button type="button" variant="outline" onClick={() => setShowNickModal(false)} data-testid={`${testIdPrefix}-nickname-skip`}>
-                  Skip for Now
+                <Button type="button" variant="outline" onClick={() => { setErrorMsg(''); setShowNickModal(false); }} data-testid={`${testIdPrefix}-nickname-skip`}>
+                  {user && user.nickname && !user.nickname.startsWith('Survivor_') ? 'Cancel' : 'Skip for Now'}
                 </Button>
                 <Button type="submit" className="save-btn" data-testid={`${testIdPrefix}-nickname-save`}>
                   Confirm Call Sign

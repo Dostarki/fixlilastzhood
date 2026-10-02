@@ -162,6 +162,7 @@ async def verify_signature(db, message: str, signature: str) -> Dict[str, Any]:
 
     # 4. Check if profile exists; if not, create initial survivor profile
     account = await get_account_by_address(db, claimed_address)
+    new_account = account is None
     if not account:
         default_nick = f"Survivor_{claimed_address[-4:].upper()}"
         account = await create_or_update_profile(db, claimed_address, default_nick, 'soldier')
@@ -173,6 +174,7 @@ async def verify_signature(db, message: str, signature: str) -> Dict[str, Any]:
         'sessionToken': session_token,
         'address': checksum_addr,
         'hasProfile': True,
+        'new_account': new_account,
         'paid_access': await has_paid_access(db, claimed_address),
         'fee_exempt': await has_fee_exemption(db, claimed_address),
         'account': account,

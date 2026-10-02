@@ -79,3 +79,10 @@ Testing agent raporunu oku, tüm kapsam içi hataları gider; Early dış DB eri
 ## Oturum: AIM joystick hep sağa ateş ediyordu → 360° düzeltme
 - Kök neden: Sağ joystick sürüklenirken global `pointermove` (renderer this.mouse) parmağın EKRAN konumundan (sağ tarafta) nişanı yeniden hesaplayıp joystick açısını eziyordu → hep sağa.
 - Çözüm: this.mouse içindeki açı güncellemesine `&& !this.aimStick` koşulu eklendi. Artık aim stick aktifken global işleyici araya girmiyor; açı yalnız joystick yönünden geliyor. 8 yön testi 45° aralıklarla tam 360° veriyor, hareket bazıyla tutarlı. Derleme temiz, 200.
+
+## Oturum: İlk cüzdan bağlantısında tek seferlik nick girişi + istediğinde değiştirme
+- Backend (player_auth.py verify + server.py WalletAuthResponse): yeni hesap ilk kez oluşturulduğunda yanıta `new_account: true` eklendi (ikinci girişte false).
+- Frontend authContext: loginWithWallet dönüşüne new_account taşındı.
+- WalletGate: nick modalı artık ödeme (game_access) şartına bağlı DEĞİL; yalnızca `acct.new_account` olduğunda (ilk bağlantı) bir kez açılıyor. Kullanıcı skip ederse tekrar otomatik açılmaz.
+- "İstediğinde değiştir": bağlı rozetine kalem (Pencil) butonu eklendi → mevcut nick ile modalı açar, updateProfile(/api/auth/profile) ile kaydeder. Modal başlığı/metni duruma göre REGISTER/CHANGE; modal içinde inline hata (nick dolu vb.).
+- Uçtan uca doğrulandı (eth_account ile SIWE): ilk giriş new_account=true, ikinci false; /auth/profile ile nick değişimi kalıcı ve /auth/me'de görünüyor. Derleme temiz, konsol hatası yok.

@@ -8,7 +8,8 @@ const API = `${backend}/api`;
 const TOKEN_KEY = 'dz_auth_token';
 const AuthContext = createContext(null);
 const accountFrom = data => ({ ...data.account, progress: data.progress, paid_access: data.paid_access === true,
-  fee_exempt: data.fee_exempt === true, game_access: data.paid_access === true || data.fee_exempt === true });
+  fee_exempt: data.fee_exempt === true, game_access: data.paid_access === true || data.fee_exempt === true,
+  new_account: data.new_account === true });
 
 async function request(path, body) {
   const token = localStorage.getItem(TOKEN_KEY);

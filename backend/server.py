@@ -167,6 +167,7 @@ class WalletAuthResponse(BaseModel):
     sessionToken: str
     address: str
     hasProfile: bool
+    new_account: bool = False
     account: dict
     progress: dict
     paid_access: bool

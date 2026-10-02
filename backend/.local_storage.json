@@ -234,9 +234,29 @@
       "account_id": "0xf73a4a785c29b72168e96d190b83ce2c04224b7b",
       "address": "0xF73a4a785C29b72168E96d190b83Ce2c04224b7b",
       "created_at": "2026-10-02T07:00:50.593691+00:00",
-      "last_login_at": "2026-10-02T07:47:55.807709+00:00",
+      "last_login_at": "2026-10-02T08:12:23.233999+00:00",
       "nickname": "Survivor_4B7B",
       "normalized_nickname": "survivor_4b7b",
+      "schema_version": 1,
+      "skin": "soldier"
+    },
+    {
+      "account_id": "0xe9dd032cfe226aa8d9deeb7ab49547193047d459",
+      "address": "0xe9DD032Cfe226AA8d9dEeB7ab49547193047d459",
+      "created_at": "2026-10-02T08:44:18.007642+00:00",
+      "last_login_at": "2026-10-02T08:44:18.007642+00:00",
+      "nickname": "Survivor_D459",
+      "normalized_nickname": "survivor_d459",
+      "schema_version": 1,
+      "skin": "soldier"
+    },
+    {
+      "account_id": "0x05da70bf2429b79ff272b57b9273a3f5bcfbb2eb",
+      "address": "0x05DA70Bf2429b79fF272B57B9273A3F5bcfbB2Eb",
+      "created_at": "2026-10-02T08:44:30.661569+00:00",
+      "last_login_at": "2026-10-02T08:44:30.811985+00:00",
+      "nickname": "Ranger453",
+      "normalized_nickname": "ranger453",
       "schema_version": 1,
       "skin": "soldier"
     }
@@ -3569,7 +3589,7 @@
       "account_id": "0xf73a4a785c29b72168e96d190b83ce2c04224b7b",
       "environment": "robinhood",
       "gold": 150,
-      "xp": 0,
+      "xp": 10,
       "level": 1,
       "stat_points": 0,
       "stats": {
@@ -3599,8 +3619,8 @@
       },
       "inventory": {
         "glock18": {
-          "ammo": 17,
-          "reserve": 102,
+          "ammo": 11,
+          "reserve": 153,
           "infinite_reserve": true
         }
       },
@@ -3635,12 +3655,163 @@
       "total_score": 0,
       "kills": 0,
       "pvp": 0,
-      "revision": 14,
-      "updated_at": "2026-10-02T07:32:54.544652+00:00",
+      "revision": 79,
+      "updated_at": "2026-10-02T08:16:07.811002+00:00",
       "local_report_receipts": {
         "a1d4f74a14eb4ec8d21ebe0a1afb557e": 11,
-        "3424354609b506bf41c6b623277314ee": 2
+        "3424354609b506bf41c6b623277314ee": 2,
+        "a5e6854287381750e05cbe9785826596": 9,
+        "4c4d09242b7ee760edb46c7819b954d3": 10,
+        "6a1ba69d87c786d6de0210452b586c33": 16,
+        "7af7ec39dfbfc9a4b94729834b151f9e": 1,
+        "edcca5942668c4c6cd1416493a27843a": 6,
+        "cabe4bab78ca40978ab79a41a6382cbb": 14,
+        "e2e9d5c2a115b46df3015c26f816fa34": 9
       }
+    },
+    {
+      "account_id": "0xe9dd032cfe226aa8d9deeb7ab49547193047d459",
+      "environment": "robinhood",
+      "gold": 150,
+      "xp": 0,
+      "level": 1,
+      "stat_points": 0,
+      "stats": {
+        "reload_speed": 0,
+        "movement_speed": 0,
+        "heal_multiplier": 0,
+        "max_hp": 0,
+        "stamina": 0
+      },
+      "heal_items": {
+        "medkit": 1,
+        "faid": 2
+      },
+      "consumables": {
+        "energy_drink": 0
+      },
+      "energy_drink_expires_at": null,
+      "unlocked_weapons": [
+        "glock18"
+      ],
+      "equipped_weapon": "glock18",
+      "weapons": {
+        "glock18": {
+          "ammo": 17,
+          "reserve": 102
+        }
+      },
+      "inventory": {
+        "glock18": {
+          "ammo": 17,
+          "reserve": 102
+        }
+      },
+      "weapon_parts": [],
+      "weapon_upgrades": {},
+      "equipped_equipment": {
+        "head": null,
+        "body": null,
+        "legs": null,
+        "hands": null,
+        "feet": null,
+        "backpack": null
+      },
+      "owned_equipment": [],
+      "equipment_levels": {},
+      "equipment_parts": {},
+      "calibration": {
+        "calibration_t1": 0,
+        "calibration_t2": 0,
+        "calibration_t3": 0
+      },
+      "calibration_progress": {
+        "1": 0,
+        "2": 0
+      },
+      "owned_soldier_tiers": [],
+      "active_soldier_tier": null,
+      "active_soldier_tiers": [],
+      "owned_soldiers": [],
+      "active_soldier_ids": [],
+      "soldier_schema_version": 1,
+      "total_score": 0,
+      "kills": 0,
+      "pvp": 0,
+      "revision": 1,
+      "updated_at": "2026-10-02T08:44:18.008529+00:00"
+    },
+    {
+      "account_id": "0x05da70bf2429b79ff272b57b9273a3f5bcfbb2eb",
+      "environment": "robinhood",
+      "gold": 150,
+      "xp": 0,
+      "level": 1,
+      "stat_points": 0,
+      "stats": {
+        "reload_speed": 0,
+        "movement_speed": 0,
+        "heal_multiplier": 0,
+        "max_hp": 0,
+        "stamina": 0
+      },
+      "heal_items": {
+        "medkit": 1,
+        "faid": 2
+      },
+      "consumables": {
+        "energy_drink": 0
+      },
+      "energy_drink_expires_at": null,
+      "unlocked_weapons": [
+        "glock18"
+      ],
+      "equipped_weapon": "glock18",
+      "weapons": {
+        "glock18": {
+          "ammo": 17,
+          "reserve": 102
+        }
+      },
+      "inventory": {
+        "glock18": {
+          "ammo": 17,
+          "reserve": 102
+        }
+      },
+      "weapon_parts": [],
+      "weapon_upgrades": {},
+      "equipped_equipment": {
+        "head": null,
+        "body": null,
+        "legs": null,
+        "hands": null,
+        "feet": null,
+        "backpack": null
+      },
+      "owned_equipment": [],
+      "equipment_levels": {},
+      "equipment_parts": {},
+      "calibration": {
+        "calibration_t1": 0,
+        "calibration_t2": 0,
+        "calibration_t3": 0
+      },
+      "calibration_progress": {
+        "1": 0,
+        "2": 0
+      },
+      "owned_soldier_tiers": [],
+      "active_soldier_tier": null,
+      "active_soldier_tiers": [],
+      "owned_soldiers": [],
+      "active_soldier_ids": [],
+      "soldier_schema_version": 1,
+      "total_score": 0,
+      "kills": 0,
+      "pvp": 0,
+      "revision": 1,
+      "updated_at": "2026-10-02T08:44:30.662227+00:00"
     }
   ],
   "auth_sessions": [
@@ -3875,6 +4046,46 @@
       "chain_id": 4663,
       "created_at": "2026-10-02T07:47:53.408394+00:00",
       "expires_at": "2026-10-09T07:47:53.408394+00:00"
+    },
+    {
+      "session_token": "OecTCDHYJSG7LSeBQkETYY_KK2FkI5L_1mP98NQUcdFziJvs",
+      "account_id": "0xf73a4a785c29b72168e96d190b83ce2c04224b7b",
+      "address": "0xF73a4a785C29b72168E96d190b83Ce2c04224b7b",
+      "chain_id": 4663,
+      "created_at": "2026-10-02T08:06:00.567741+00:00",
+      "expires_at": "2026-10-09T08:06:00.567741+00:00"
+    },
+    {
+      "session_token": "K0k0CzqwG7UvhHu3Ut-5lETqeHsNUQgtU54EZzRYrUoSAKSZ",
+      "account_id": "0xf73a4a785c29b72168e96d190b83ce2c04224b7b",
+      "address": "0xF73a4a785C29b72168E96d190b83Ce2c04224b7b",
+      "chain_id": 4663,
+      "created_at": "2026-10-02T08:12:21.133295+00:00",
+      "expires_at": "2026-10-09T08:12:21.133295+00:00"
+    },
+    {
+      "session_token": "EoEEARsn7YM4nJxdwiOS1LhZnbZb-9mjfh0vm9UmJnDvWW4s",
+      "account_id": "0xe9dd032cfe226aa8d9deeb7ab49547193047d459",
+      "address": "0xe9DD032Cfe226AA8d9dEeB7ab49547193047d459",
+      "chain_id": 4663,
+      "created_at": "2026-10-02T08:44:17.999009+00:00",
+      "expires_at": "2026-10-09T08:44:17.999009+00:00"
+    },
+    {
+      "session_token": "wEnfS9x1N0AWzo95zsbvknztebSZxZ8DDafLUtEBOyvl_NqF",
+      "account_id": "0xe9dd032cfe226aa8d9deeb7ab49547193047d459",
+      "address": "0xe9DD032Cfe226AA8d9dEeB7ab49547193047d459",
+      "chain_id": 4663,
+      "created_at": "2026-10-02T08:44:18.261752+00:00",
+      "expires_at": "2026-10-09T08:44:18.261752+00:00"
+    },
+    {
+      "session_token": "1AKIR6m6bIN4Z0i_toV8zFgKAeFbtjj0_GTL6PcLQQU2eKSf",
+      "account_id": "0x05da70bf2429b79ff272b57b9273a3f5bcfbb2eb",
+      "address": "0x05DA70Bf2429b79fF272B57B9273A3F5bcfbB2Eb",
+      "chain_id": 4663,
+      "created_at": "2026-10-02T08:44:30.654143+00:00",
+      "expires_at": "2026-10-09T08:44:30.654143+00:00"
     }
   ],
   "purchase_orders": [
@@ -4747,5 +4958,5 @@
       "source_type": "market"
     }
   ],
-  "saved_at": "2026-10-02T07:47:55.811641+00:00"
+  "saved_at": "2026-10-02T08:44:30.815181+00:00"
 }
