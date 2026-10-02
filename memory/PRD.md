@@ -51,3 +51,8 @@ Testing agent raporunu oku, tüm kapsam içi hataları gider; Early dış DB eri
 - Zombie_count modelindeki le=600, UI max/clamp ve legacy spawn_enemies 600 limiti kaldırıldı. Negatif/kesirli/boş giriş hata gösterir. Büyük nüfusun cihaz/yükleme maliyeti panelde yazılır.
 - Yerel dünya başlangıcı artık sabit100 döngüyle sınırlı değil: prepare_step ile hedefe kadar parçalı oluşturma, arayüz ilerleme mesajı ve iptal düğmesi.
 - Sonraki: yeni spawn + >600/0 ayar + WASM hedefpopülasyon + bildirilen wallet crash testlerini çalıştır; /play gerçek signed test-wallet akışını doğrula. Tests/browser_wallet_fixture.py hazır disposable fixture sağlar. Özel anahtar SADECE test fixture, gerçek transfer yapılmaz.
+## Bug fix (bu oturum) — "PREPARING WORLD" takılması
+- Belirti: Cüzdan + ödeme sonrası Start Game, "PREPARING WORLD / PREPARING WESTFALL" ekranında sonsuz bekliyordu.
+- Kök neden: frontend/public/local-runtime/ içinde Pyodide paket wheel'leri (micropip, pydantic, pydantic_core, cffi, pycparser, typing_extensions, typing_inspection, annotated_types) ve pymunk-7.2.0 + pathfinding-1.0.22 wheel'leri eksikti. Bu yollar SPA index.html fallback'i (HTML) döndürüyordu; Pyodide loadPackage/micropip.install hata veriyor, worker "PREPARING WORLD" sonrası ilerleyemiyordu.
+- Çözüm: `python scripts/package_local_engine.py --runtime` çalıştırılarak tüm runtime wheel'leri CDN'den indirildi (15 asset doğrulandı). Wheel'ler artık application/octet-stream olarak servis ediliyor.
+- Doğrulama: Gerçek tarayıcıda local-game.worker.js tam boot oldu (DOWNLOADING -> ... -> PREPARING WORLD 250/250 -> WORLD READY/open). Testing agent frontend %100 geçti (iteration_1.json).
