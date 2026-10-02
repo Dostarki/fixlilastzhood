@@ -75,3 +75,7 @@ Testing agent raporunu oku, tüm kapsam içi hataları gider; Early dış DB eri
 - Belirti: Sağ alttaki AIM/FIRE joystick'i ile silah/cephane kartı (Glock 18) ve Q/F iyileştirme butonları üst üste biniyordu.
 - Çözüm: Bu öğeleri saran `.hud-right-bottom` mobil konumu `right:30;bottom:60` → `right:14;bottom:298` olarak yukarı taşındı (App.css, @media max-width:767). Joystick üst kenarı ~280px olduğundan kart artık onun hemen üstünde, çakışma yok. Kart + heal butonları birlikte sağ-üste alındı (kullanıcı isteği "silahı hafif sağ üste koy").
 - Derleme temiz, sayfa 200. Önizleme ekran-görüntü aracı mobil viewport emüle edemediği ve oyun ödeme-kapılı olduğu için oyun-içi mobil görünüm burada kanıtlanamadı; telefonda doğrulama önerilir.
+
+## Oturum: AIM joystick hep sağa ateş ediyordu → 360° düzeltme
+- Kök neden: Sağ joystick sürüklenirken global `pointermove` (renderer this.mouse) parmağın EKRAN konumundan (sağ tarafta) nişanı yeniden hesaplayıp joystick açısını eziyordu → hep sağa.
+- Çözüm: this.mouse içindeki açı güncellemesine `&& !this.aimStick` koşulu eklendi. Artık aim stick aktifken global işleyici araya girmiyor; açı yalnız joystick yönünden geliyor. 8 yön testi 45° aralıklarla tam 360° veriyor, hareket bazıyla tutarlı. Derleme temiz, 200.
