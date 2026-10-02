@@ -21,16 +21,9 @@ class AdminIdentity(BaseModel):
 
 
 def check_origin(request: Request):
-    # These are trusted site addresses, not client IP or browser restrictions.
-    # Share the CORS allowlist so www/custom domains work as well as the proxy.
-    allowed = {
-        origin.strip().rstrip('/')
-        for key in ('ADMIN_ORIGIN', 'ADMIN_PROXY_ORIGIN', 'CORS_ORIGINS')
-        for origin in os.environ[key].split(',')
-    } - {'', '*', 'null'}
-    if request.headers.get('origin') not in allowed:
-        logging.getLogger('deadzone.auth').warning('Rejected admin Origin: %r', request.headers.get('origin'))
-        raise HTTPException(403, 'Invalid request origin.')
+    # Origin/domain restriction intentionally disabled: admin access is granted
+    # by the operator password alone (brute-force attempt limit still applies).
+    return
 
 
 async def setup_admin(db):

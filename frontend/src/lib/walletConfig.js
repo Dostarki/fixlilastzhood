@@ -13,6 +13,9 @@ const appUrl = process.env.REACT_APP_BACKEND_URL;
 if (!rpcUrl || !explorerUrl || !appUrl || chainId !== 4663) {
   throw new Error('Wallet configuration requires Robinhood Mainnet (4663) environment settings.');
 }
+if (!projectId) {
+  throw new Error('REACT_APP_WALLETCONNECT_PROJECT_ID is required for wallet connections.');
+}
 
 export const robinhoodMainnet = defineChain({
   id: chainId,
@@ -22,12 +25,14 @@ export const robinhoodMainnet = defineChain({
   blockExplorers: { default: { name: 'Robinhood Explorer', url: explorerUrl } },
 });
 
-// Always let RainbowKit populate rkDetails, including for injected-only mode.
-// Calling injectedWallet().createConnector({}) crashes when an extension exists.
-const connectors = connectorsForWallets(projectId ? [
+// Always expose the full wallet chooser (branded wallets + generic injected),
+// never an injected-only list. On a mobile browser this lets the user pick
+// MetaMask/Rainbow/Coinbase and deep-link to the installed wallet app even when
+// no provider is injected into the page.
+const connectors = connectorsForWallets([
   { groupName: 'Wallets', wallets: [metaMaskInjectedWallet, rainbowWallet, coinbaseWallet, walletConnectWallet] },
   { groupName: 'Browser wallets', wallets: [injectedWallet] },
-] : [{ groupName: 'Browser wallets', wallets: [injectedWallet] }],
+],
 { appName: 'LastZHood', appUrl, projectId });
 
 export const wagmiConfig = createConfig({
