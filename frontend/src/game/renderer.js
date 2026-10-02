@@ -98,7 +98,7 @@ export class GameRenderer {
     this.mouse = e => { const r = this.container.getBoundingClientRect(); this.pointer.set((e.clientX-r.left)/r.width*2-1, -(e.clientY-r.top)/r.height*2+1); if (this.mode === 'playing' && !this.blocked) { this.ray.setFromCamera(this.pointer,this.camera); this.ray.ray.intersectPlane(this.plane,this.aimPoint); this.angle=Math.atan2(this.aimPoint.x-this.player.position.x,this.aimPoint.z-this.player.position.z); this.publishInput?.(); } };
     this.fire = e => { if (e.button === 0 && e.target === this.renderer.domElement) { this.mouseDown = true; this.publishInput?.(); this.tryLocalFire(performance.now()); } };
     this.release = () => { this.mouseDown = false; audio.stopAutomatic(); this.publishInput?.(); };
-    this.blur = () => { this.keys = {}; this.mouseDown = false; this.touchMove = null; this.touchFire = false; audio.stopAutomatic(); this.publishInput?.(); };
+    this.blur = () => { this.keys = {}; this.mouseDown = false; this.touchMove = null; this.touchFire = false; this.aimStick = false; audio.stopAutomatic(); this.publishInput?.(); };
     this.wheel = e => {
       if (this.mode !== 'playing' || this.blocked) return;
       e.preventDefault();
@@ -344,7 +344,9 @@ export class GameRenderer {
       const moving=predicted.speed>.15;
       this.ray.setFromCamera(this.pointer, this.camera); this.ray.ray.intersectPlane(this.plane, this.aimPoint);
       const touchTargets=[...this.state.zombies,...(this.state.bosses||[]).filter(b=>b.alive&&Math.hypot(b.x-me.x,b.z-me.z)<70)];
-      if (this.touchFire && touchTargets.length) {
+      if (this.aimStick) {
+        // Manual aim: this.angle is driven directly by the on-screen aim joystick.
+      } else if (this.touchFire && touchTargets.length) {
         const target = touchTargets.reduce((a, b) => Math.hypot(a.x-me.x, a.z-me.z) < Math.hypot(b.x-me.x, b.z-me.z) ? a : b);
         this.angle = Math.atan2(target.x-me.x, target.z-me.z);
       } else this.angle = Math.atan2(this.aimPoint.x-this.player.position.x, this.aimPoint.z-this.player.position.z);

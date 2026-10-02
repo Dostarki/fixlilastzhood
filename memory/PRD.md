@@ -62,3 +62,11 @@ Testing agent raporunu oku, tüm kapsam içi hataları gider; Early dış DB eri
 - Mobil cüzdan: Kullanıcı WalletConnect/Reown Project ID verdi; frontend/.env'e REACT_APP_WALLETCONNECT_PROJECT_ID eklendi. walletConfig.js artık projectId koşuluna bağlı olmadan HER ZAMAN tam markalı cüzdan listesini gösteriyor (metaMaskInjectedWallet, rainbowWallet, coinbaseWallet, walletConnectWallet + injectedWallet). Enjekte sağlayıcı olmasa bile MetaMask/Rainbow/Coinbase/WalletConnect/Browser Wallet görünüyor (tarayıcıda doğrulandı). Mobilde MetaMask seçilince, enjekte yoksa metamask.app.link deep-link ile yüklü MetaMask uygulaması açılır.
 - Not: CRA'yı import anında çökerten MetaMask SDK'dan kaçınmak için orijinal özel metaMaskInjectedWallet korundu (mobil deep-link'i getWalletConnectConnector + metamask.app.link üzerinden yapıyor). Gerçek mobil cihazda uygulama açılışı otomasyonla test edilemez.
 - Deploy: kullanıcı "daha sonra ben haber veririm" dedi; yayınlama YAPILMADI.
+
+## Oturum: Mobil kontroller — kaydırmalı çift joystick
+- Eski 4 yönlü D-pad + tek ateş butonu kaldırıldı (HUD.jsx). Yerine iki analog kaydırmalı joystick geldi:
+  - Sol "MOVE": sürükleyerek sürekli hareket (engine.touchMove = normalize {x,y}; eski D-pad semantiği birebir korundu: sağ={1,0}, yukarı={0,-1}).
+  - Sağ "AIM · FIRE": sürükleyerek manuel nişan + yön dönüşü; deadzone (0.25) aşılınca ateş başlar. Açı, hareketle aynı izometrik baza göre atan2(nx+ny, -nx+ny) ile hesaplanır, yani çubuğu ittiğiniz ekran yönüne nişan alır/ateş eder.
+- renderer.js: `aimStick` bayrağı eklendi; aktifken otomatik en-yakın-zombi hedeflemesi devre dışı, açı doğrudan sağ joystick'ten gelir. tryLocalFire zaten this.angle yönünde ateş ediyor; açı input.angle ile sunucuya da gider. blur'da aimStick sıfırlanır.
+- App.css: .mobile-stick (130px daire, sol alt / sağ alt, bottom:150px) köşe panellerinin (vitals/ammo bottom:21px) üstünde konumlandı; artık HUD ile çakışmıyor. Thumb sürükleme ile hareket eder.
+- Doğrulama: webpack derlemesi başarılı (yalnız source-map uyarıları), sayfa 200. Joystick giriş matematiği Node ile doğrulandı (hareket eşlemesi + nişan açısı + ateş deadzone). Oyun-içi görsel, cüzdan+ödeme gerektirdiği için önizleme otomasyonunda ekran görüntüsüyle alınamadı; gerçek telefonda kullanıcı doğrulaması önerilir.

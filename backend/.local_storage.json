@@ -234,7 +234,7 @@
       "account_id": "0xf73a4a785c29b72168e96d190b83ce2c04224b7b",
       "address": "0xF73a4a785C29b72168E96d190b83Ce2c04224b7b",
       "created_at": "2026-10-02T07:00:50.593691+00:00",
-      "last_login_at": "2026-10-02T07:00:50.593691+00:00",
+      "last_login_at": "2026-10-02T07:32:41.543536+00:00",
       "nickname": "Survivor_4B7B",
       "normalized_nickname": "survivor_4b7b",
       "schema_version": 1,
@@ -3600,7 +3600,8 @@
       "inventory": {
         "glock18": {
           "ammo": 17,
-          "reserve": 102
+          "reserve": 102,
+          "infinite_reserve": true
         }
       },
       "weapon_parts": [],
@@ -3634,8 +3635,11 @@
       "total_score": 0,
       "kills": 0,
       "pvp": 0,
-      "revision": 1,
-      "updated_at": "2026-10-02T07:00:50.594427+00:00"
+      "revision": 12,
+      "updated_at": "2026-10-02T07:30:07.593179+00:00",
+      "local_report_receipts": {
+        "a1d4f74a14eb4ec8d21ebe0a1afb557e": 11
+      }
     }
   ],
   "auth_sessions": [
@@ -3856,12 +3860,12 @@
       "expires_at": "2026-10-08T20:26:07.193980+00:00"
     },
     {
-      "session_token": "iYcZp-osg285-1Hr7an5-6lIHHl6bK0DCKdgVrZ7hJliGkry",
+      "session_token": "cotI8INJ_o878i7ijWrn4T7yr6EVkdB_T4p7MbSapZu6Zp5h",
       "account_id": "0xf73a4a785c29b72168e96d190b83ce2c04224b7b",
       "address": "0xF73a4a785C29b72168E96d190b83Ce2c04224b7b",
       "chain_id": 4663,
-      "created_at": "2026-10-02T07:00:50.585880+00:00",
-      "expires_at": "2026-10-09T07:00:50.585880+00:00"
+      "created_at": "2026-10-02T07:32:39.550726+00:00",
+      "expires_at": "2026-10-09T07:32:39.550726+00:00"
     }
   ],
   "purchase_orders": [
@@ -4734,5 +4738,5 @@
       "source_type": "market"
     }
   ],
-  "saved_at": "2026-10-02T07:20:44.341079+00:00"
+  "saved_at": "2026-10-02T07:32:41.547128+00:00"
 }
