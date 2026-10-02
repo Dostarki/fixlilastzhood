@@ -70,3 +70,8 @@ Testing agent raporunu oku, tüm kapsam içi hataları gider; Early dış DB eri
 - renderer.js: `aimStick` bayrağı eklendi; aktifken otomatik en-yakın-zombi hedeflemesi devre dışı, açı doğrudan sağ joystick'ten gelir. tryLocalFire zaten this.angle yönünde ateş ediyor; açı input.angle ile sunucuya da gider. blur'da aimStick sıfırlanır.
 - App.css: .mobile-stick (130px daire, sol alt / sağ alt, bottom:150px) köşe panellerinin (vitals/ammo bottom:21px) üstünde konumlandı; artık HUD ile çakışmıyor. Thumb sürükleme ile hareket eder.
 - Doğrulama: webpack derlemesi başarılı (yalnız source-map uyarıları), sayfa 200. Joystick giriş matematiği Node ile doğrulandı (hareket eşlemesi + nişan açısı + ateş deadzone). Oyun-içi görsel, cüzdan+ödeme gerektirdiği için önizleme otomasyonunda ekran görüntüsüyle alınamadı; gerçek telefonda kullanıcı doğrulaması önerilir.
+
+## Oturum: Sağ-alt silah kartı ↔ ateş joystick çakışması
+- Belirti: Sağ alttaki AIM/FIRE joystick'i ile silah/cephane kartı (Glock 18) ve Q/F iyileştirme butonları üst üste biniyordu.
+- Çözüm: Bu öğeleri saran `.hud-right-bottom` mobil konumu `right:30;bottom:60` → `right:14;bottom:298` olarak yukarı taşındı (App.css, @media max-width:767). Joystick üst kenarı ~280px olduğundan kart artık onun hemen üstünde, çakışma yok. Kart + heal butonları birlikte sağ-üste alındı (kullanıcı isteği "silahı hafif sağ üste koy").
+- Derleme temiz, sayfa 200. Önizleme ekran-görüntü aracı mobil viewport emüle edemediği ve oyun ödeme-kapılı olduğu için oyun-içi mobil görünüm burada kanıtlanamadı; telefonda doğrulama önerilir.
